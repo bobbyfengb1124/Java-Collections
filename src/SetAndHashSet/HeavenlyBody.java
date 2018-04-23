@@ -37,22 +37,32 @@ public final class HeavenlyBody {
 	public Set<HeavenlyBody> getSatellites() {
 		return new HashSet<>(this.satellites);
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return this.name.hashCode() + 57;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
-		if(this == obj) {
+		if (this == obj)
 			return true;
-		}
-		
+		if (obj == null)
+			return false;
 		System.out.println("obj.getClass() is " + obj.getClass());
 		System.out.println("this.getClass() is " + this.getClass());
-		
-		if((obj == null) || (obj.getClass() != this.getClass())) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
-
-		String objName = ((HeavenlyBody) obj).getName();
-		return this.name.equals(objName);
+		HeavenlyBody other = (HeavenlyBody) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
+	
+	
+	
 
 }
