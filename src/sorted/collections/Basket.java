@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 
@@ -14,7 +15,7 @@ public class Basket {
 
 	public Basket(String name) {
 		this.name = name;
-		this.list = new HashMap<StockItem, Integer>();
+		this.list = new TreeMap<StockItem, Integer>();
 	}
 
 	public int addToBasket(StockItem item, int quantity) {
@@ -32,7 +33,7 @@ public class Basket {
 	
 	@Override
 	public String toString() {
-		String s = "\nShopping basket " + name + " contains " + list.size()+ " items\n";
+		String s = "\nShopping basket " + name + " contains " + list.size()+ ((list.size() == 1) ? "item" : "items") + "\n";
 		double totalCost =0.0;
 		for(Entry<StockItem, Integer> item : list.entrySet()) {
 			s = s + item.getKey() + ". " + item.getValue() + " purchased\n";

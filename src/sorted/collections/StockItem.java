@@ -1,12 +1,11 @@
 package sorted.collections;
 
-import org.w3c.dom.NameList;
-
 public class StockItem implements Comparable<StockItem> {
 
 	private final String name;
 	private double price;
 	private int quantityStock = 0; // can be initialized later
+	private int reserved;
 
 	public StockItem(String name, double price) {
 		this.name = name;
@@ -30,8 +29,8 @@ public class StockItem implements Comparable<StockItem> {
 		}
 	}
 
-	public int quantityInStock() {
-		return quantityStock;
+	public int availableQuantity() {
+		return quantityStock - reserved;
 	}
 
 	public void setQuantityStock(int quantityStock) {
@@ -47,6 +46,22 @@ public class StockItem implements Comparable<StockItem> {
 		if (newQuantity >= 0) {
 			this.quantityStock = newQuantity;
 		}
+	}
+	
+	public int reserveStock(int quantity) {
+		if(quantity <= availableQuantity()) {
+			reserved += quantity;
+			return quantity;
+		}
+		return 0;
+	}
+	
+	public int unreserveStock(int quantity) {
+		if(quantity <= reserved) {
+			reserved -= quantity;
+			return quantity;
+		}
+		return 0;
 	}
 	
 	@Override
@@ -89,8 +104,11 @@ public class StockItem implements Comparable<StockItem> {
 
 	@Override
 	public String toString() {
-		return "StockItem [name=" + name + ", price=" + price + ", quantityStock=" + quantityStock + "]";
+		return "StockItem [name=" + name + ", price=" + price + ", quantityStock=" + quantityStock + ", reserved="
+				+ reserved + "]";
 	}
+
+	
 	
 	
 
