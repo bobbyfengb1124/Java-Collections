@@ -64,6 +64,16 @@ public class StockItem implements Comparable<StockItem> {
 		return 0;
 	}
 	
+    public int finaliseStock(int quantity) {
+        if (quantity <= reserved) {
+        	quantityStock -= quantity;
+            reserved -= quantity;
+            return quantity;
+        }
+
+        return 0;
+    }
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -91,7 +101,7 @@ public class StockItem implements Comparable<StockItem> {
 
 	@Override
 	public int compareTo(StockItem o) {
-		System.out.println("Entering StockItem.compareTo");
+//		System.out.println("Entering StockItem.compareTo");
 		if(this == o) {
 			return 0;
 		}
@@ -102,14 +112,9 @@ public class StockItem implements Comparable<StockItem> {
 		throw new NullPointerException();
 	}
 
-	@Override
-	public String toString() {
-		return "StockItem [name=" + name + ", price=" + price + ", quantityStock=" + quantityStock + ", reserved="
-				+ reserved + "]";
-	}
-
-	
-	
-	
+    @Override
+    public String toString() {
+        return this.name + " : price " + this.price + ". Reserved: " + this.reserved;
+    }
 
 }
