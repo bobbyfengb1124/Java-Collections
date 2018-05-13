@@ -70,8 +70,8 @@ class Writer implements Runnable {
 			catch (InterruptedException e) {
 				// TODO: handle exception
 			}
-			message.write("Finished");
 		}
+		message.write("Finished");
 	}
 }
 
