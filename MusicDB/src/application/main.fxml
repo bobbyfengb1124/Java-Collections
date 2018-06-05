@@ -10,39 +10,55 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.shape.Box?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-            fx:controller="application.Controller" xmlns:fx="http://javafx.com/fxml/1">
-    <center>
-        <TableView fx:id="artistTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <columns>
-                <TableColumn prefWidth="${artistTable.width}" text="Name" />
-            </columns>
-            <BorderPane.margin>
-                <Insets right="10.0" />
-            </BorderPane.margin>
-        </TableView>
-    </center>
-    <right>
-        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="170.00" spacing="20.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button maxWidth="Infinity" mnemonicParsing="false" text="List Artists" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" text="Show Albums (artist)" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" text="Update Artist" />
-            </children>
-            <BorderPane.margin>
-                <Insets right="10.0" />
-            </BorderPane.margin>
-        </VBox>
-    </right>
-    <bottom>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <ProgressBar visible="false" prefWidth="200.0" progress="0.0">
-                    <HBox.margin>
-                        <Insets left="50.0" />
-                    </HBox.margin>
-                </ProgressBar>
-            </children>
-        </HBox>
-    </bottom>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+	prefWidth="600.0" fx:controller="application.Controller"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<center>
+		<TableView fx:id="artistTable" prefHeight="200.0"
+			prefWidth="200.0" BorderPane.alignment="CENTER">
+			<columns>
+				<TableColumn prefWidth="${artistTable.width}"
+					text="Name">
+					<cellValueFactory>
+						<PropertyValueFactory property="name">
+						</PropertyValueFactory>
+					</cellValueFactory>
+				</TableColumn>
+			</columns>
+			<BorderPane.margin>
+				<Insets right="10.0" />
+			</BorderPane.margin>
+		</TableView>
+	</center>
+	<right>
+		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="170.00"
+			spacing="20.0" BorderPane.alignment="CENTER">
+			<children>
+				<Button onAction="#listArtists" maxWidth="Infinity" mnemonicParsing="false"
+					text="List Artists" />
+				<Button onAction="#listAlbumsForArtist" maxWidth= "Infinity" mnemonicParsing="false"
+					text="Show Albums (artist)" />
+				<Button maxWidth="Infinity" mnemonicParsing="false"
+					text="Update Artist" />
+			</children>
+			<BorderPane.margin>
+				<Insets right="10.0" />
+			</BorderPane.margin>
+		</VBox>
+	</right>
+	<bottom>
+		<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<ProgressBar fx:id="progressBar" visible="false" prefWidth="200.0"
+					progress="0.0">
+					<HBox.margin>
+						<Insets left="50.0" />
+					</HBox.margin>
+				</ProgressBar>
+			</children>
+		</HBox>
+	</bottom>
 </BorderPane>
