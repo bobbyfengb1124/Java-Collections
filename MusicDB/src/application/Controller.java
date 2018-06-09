@@ -50,6 +50,28 @@ public class Controller {
 		new Thread(task).start();
 		
 	}
+	@FXML
+	public void updateArtist() {
+		final Artist artitst = (Artist) artistTable.getItems().get(2);
+		
+		Task<Boolean> task = new Task<Boolean>() {
+
+			@Override
+			protected Boolean call() throws Exception {
+				return Datasource.getInstance().updateArtistName(artitst.getId(), "AC/DC");
+			}
+			
+		};
+		
+		task.setOnSucceeded(e -> {
+			if(task.valueProperty().get()) {
+				artitst.setName("AC/DC");
+				artistTable.refresh();
+			}
+		});
+		
+		new Thread(task).start();
+	}
 }
 
 class GetAllArtistTask extends Task {
