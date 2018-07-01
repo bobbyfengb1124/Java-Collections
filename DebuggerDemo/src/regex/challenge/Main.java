@@ -37,6 +37,50 @@ public class Main {
         String challenge7 = "abcd.135";
         System.out.println(challenge7.matches("^[a-z]+.[0-9]+$"));
         System.out.println(challenge7.matches("^[A-z][a-z]+\\.\\d+$"));
+        
+        String challenge8 = "abcd.135uvqz.7tzik.999";
+		String regExp = "\\d+";
+		Pattern regPattern = Pattern.compile(regExp);
+		Matcher vMatcher = regPattern.matcher(challenge8);
+
+		int count = 0;
+		while (vMatcher.find()) {
+			count++;
+			System.out.println("Occurrence " + count + " : " + vMatcher.group(0));
+		}
+		
+		String challenge9 = "abcd.135\tuvqz.7\ttzik.999\n";
+		regExp = "[\\d]+[\\t\\n]";
+		regPattern = Pattern.compile(regExp);
+		vMatcher = regPattern.matcher(challenge9);
+		
+		count = 0;
+		while (vMatcher.find()) {
+			count++;
+			System.out.println("Occurrence " + count + " : " + vMatcher.group(0));
+		}
+		
+		String challenge10 = "abcd.135\tuvqz.7\ttzik.999\n";
+		regExp = "([\\d]+)([\\s])";
+		regPattern = Pattern.compile(regExp);
+		vMatcher = regPattern.matcher(challenge10);
+		
+		count = 0;
+		while (vMatcher.find()) {
+			count++;
+			System.out.println("Occurrence " + count + " : " + vMatcher.group(0) + " " + vMatcher.start(1)+ " " + (vMatcher.end(1)-1));
+		}
+		
+		String challenge11 = "{0,2},{0,5},{1,3},{2,4}";
+		regExp = "\\{([0-9],[0-9])\\}";
+		regPattern = Pattern.compile(regExp);
+		vMatcher = regPattern.matcher(challenge11);
+		
+		count = 0;
+		while (vMatcher.find()) {
+			count++;
+			System.out.println("Occurrence " + count + " : " + vMatcher.group(1));
+		}
 	}
 
 }
