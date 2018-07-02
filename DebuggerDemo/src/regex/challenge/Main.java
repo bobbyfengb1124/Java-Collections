@@ -81,6 +81,15 @@ public class Main {
 			count++;
 			System.out.println("Occurrence " + count + " : " + vMatcher.group(1));
 		}
+		
+		String challenge12 = "11111";
+		System.out.println(challenge12.matches("^[0-9]{5}$")); 
+		
+		String challenge13 = "11111-1111";
+		System.out.println(challenge13.matches("^[0-9]{5}-\\d{4}$")); 
+		
+		String challenge14 = "11111-1111";
+		System.out.println(challenge14.matches("^[0-9]{5}$|^[0-9]{5}-\\d{4}$")); 
 	}
 
 }
