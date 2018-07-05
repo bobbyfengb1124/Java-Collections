@@ -20,6 +20,7 @@ public class Locations implements Map<Integer, Location> {
 		try (FileWriter locFile = new FileWriter("locations.txt");
 				FileWriter dirFile = new FileWriter("directions.txt")) {
 			for (Location location : locations.values()) {
+				
 				locFile.write(location.getLocationID() + "," + location.getDescription() + "\r\n");
 				for (String direction : location.getExits().keySet()) {
 					dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get(direction)
