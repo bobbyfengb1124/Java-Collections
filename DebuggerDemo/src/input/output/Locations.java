@@ -14,6 +14,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InvalidClassException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -28,51 +31,39 @@ public class Locations implements Map<Integer, Location> {
 	private static Map<Integer, Location> locations = new LinkedHashMap<Integer, Location>();
 
 	public static void main(String[] args) throws IOException {
-		try (DataOutputStream locFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("locations.dat")))) {
-            for (Location location : locations.values()) {
-                locFile.writeInt(location.getLocationID());
-                locFile.writeUTF(location.getDescription());
-                System.out.println("Writing location " + location.getLocationID() + " : " + location.getDescription());
-                System.out.println("Writing " + (location.getExits().size() - 1) + " exits.");
-                locFile.writeInt(location.getExits().size() - 1);
-                for (String direction : location.getExits().keySet()) {
-                    if (!direction.equalsIgnoreCase("Q")) {
-                        System.out.println("\t\t" + direction + "," + location.getExits().get(direction));
-                        locFile.writeUTF(direction);
-                        locFile.writeInt(location.getExits().get(direction));
-                    }
-                }
-            }
-        }
+
+		try (ObjectOutputStream locFile = new ObjectOutputStream(
+				new BufferedOutputStream(new FileOutputStream("locations.dat")))) {
+			for (Location location : locations.values()) {
+				locFile.writeObject(location);
+			}
+		}
 	}
+	
+	// 1. This first four bytes will contain the number of locations (bytes 0-3)
+    // 2. The next four bytes will contain the start offset of the locations section (bytes 4-7)
+    // 3. The next section of the file will contain the index (the index is 1692 bytes long.  It will start at byte 8 and end at byte 1699
+    // 4. The final section of the file will contain the location records (the data). It will start at byte 1700
+
 
 	static {
-		try(DataInputStream locFile = new DataInputStream(new BufferedInputStream(new FileInputStream("locations.dat")))) {
-            boolean eof = false;
-            while(!eof) {
-                try {
-                    Map<String, Integer> exits = new LinkedHashMap<>();
-                    int locID = locFile.readInt();
-                    String description = locFile.readUTF();
-                    int numExits = locFile.readInt();
-                    System.out.println("Read location " + locID + " : " + description);
-                    System.out.println("Found " + numExits + " exits");
-                    for(int i=0; i<numExits; i++) {
-                        String direction = locFile.readUTF();
-                        int destination = locFile.readInt();
-                        exits.put(direction, destination);
-                        System.out.println("\t\t" + direction + "," + destination);
-                    }
-                    locations.put(locID, new Location(locID, description, exits));
+		try (ObjectInputStream locFile = new ObjectInputStream(
+				new BufferedInputStream(new FileInputStream("locations.dat")))) {
+			boolean eof = false;
+			while (!eof) {
+				Location location = (Location) locFile.readObject();
+				System.out.println("Read location " + location.getLocationID() + " : " + location.getDescription());
+				System.out.println("Found " + location.getExits().size() + " exits");
 
-                } catch(EOFException e) {
-                    eof = true;
-                }
-
-            }
-        } catch(IOException io) {
-            System.out.println("IO Exception");
-        }
+				locations.put(location.getLocationID(), location);
+			}
+		} catch (InvalidClassException e) {
+			System.out.println("InvalidClassException " + e.getMessage());
+		} catch (IOException io) {
+			System.out.println("IO Exception");
+		} catch (ClassNotFoundException e) {
+			System.out.println("ClassNotFoundException " + e.getMessage());
+		}
 	}
 
 	@Override
