@@ -5,7 +5,7 @@ public class App {
 
 	public static void main(String[] args) {
 
-		System.out.println(reverseString("Hello"));
+		System.out.println(reverseString("asdasdasdsdasd"));
 		
 	}
 	
