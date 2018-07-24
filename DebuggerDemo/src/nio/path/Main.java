@@ -1,59 +1,69 @@
 package nio.path;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryIteratorException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.FileStore;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
 
 public class Main {
 
 	public static void main(String[] args) {
+
+		// DirectoryStream.Filter<Path> filter =
+		// new DirectoryStream.Filter<Path>() {
+		// public boolean accept(Path path) throws IOException {
+		// return (Files.isRegularFile(path));
+		// }
+		// };
+
+		DirectoryStream.Filter<Path> filter = p -> Files.isRegularFile(p);
+
+		Path directory = FileSystems.getDefault().getPath("FileTree" + File.separator + "Dir2");
+		try (DirectoryStream<Path> contents = Files.newDirectoryStream(directory, filter)) {
+			for (Path file : contents) {
+				System.out.println(file.getFileName());
+			}
+
+		} catch (IOException | DirectoryIteratorException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		String separator = File.separator;
+        System.out.println(separator);
+        separator = FileSystems.getDefault().getSeparator();
+        System.out.println(separator);
+        
         try {
-//            Path fileToDelete = FileSystems.getDefault().getPath("Examples", "Dir1", "file1copy.txt");
-//            Files.deleteIfExists(fileToDelete);
-//
-//            Path fileToMove = FileSystems.getDefault().getPath("Examples", "file1.txt");
-//            Path destination = FileSystems.getDefault().getPath("Examples", "file2.txt");
-//            Files.move(fileToMove, destination);
+            Path tempFile = Files.createTempFile("myapp", ".appext");  // C:\Users\???\AppData\Local\Temp\myapp1797805585146820741.appext
+            System.out.println("Temporary file path = " + tempFile.toAbsolutePath());
 
-//            Path sourceFile = FileSystems.getDefault().getPath("Examples", "file1.txt");
-//            Path copyFile = FileSystems.getDefault().getPath("Examples", "file1copy.txt");
-//            Files.copy(sourceFile, copyFile, StandardCopyOption.REPLACE_EXISTING);
-////
-//            sourceFile = FileSystems.getDefault().getPath("Examples", "Dir1");
-//            copyFile = FileSystems.getDefault().getPath("Examples", "Dir4");
-//            Files.copy(sourceFile, copyFile, StandardCopyOption.REPLACE_EXISTING);
-            
-//          Path fileToCreate = FileSystems.getDefault().getPath("Examples", "file2.txt");
-//          Files.createFile(fileToCreate);
-//          Path dirToCreate = FileSystems.getDefault().getPath("Examples", "Dir4");
-//          Files.createDirectory(dirToCreate);
-//          Path dirToCreate = FileSystems.getDefault().getPath("Examples", "Dir2/Dir3/Dir4/Dir5/Dir6");
-//          Path dirToCreate = FileSystems.getDefault().getPath("Examples", "Dir2\\Dir3\\Dir4\\Dir5\\Dir6");
-
-//          Path dirToCreate = FileSystems.getDefault().getPath("Examples/Dir2/Dir3/Dir4/Dir5/Dir6/Dir7");
-////          Path dirToCreate = FileSystems.getDefault().getPath("Examples\\Dir2\\Dir3\\Dir4\\Dir5\\Dir6\\Dir7");
-//          Files.createDirectories(dirToCreate);
-
-          Path filePath = FileSystems.getDefault().getPath("Examples", "Dir1/file1.txt");
-//          Path filePath = FileSystems.getDefault().getPath("Examples", "Dir1\\file1.txt");
-          long size = Files.size(filePath);
-          System.out.println("Size = " + size);
-          System.out.println("Last modified =  " + Files.getLastModifiedTime(filePath));
-
-
-          BasicFileAttributes attrs = Files.readAttributes(filePath, BasicFileAttributes.class);
-          System.out.println("Size =  " + attrs.size());
-          System.out.println("Last modified =  " + attrs.lastModifiedTime());
-          System.out.println("Created = " + attrs.creationTime());
-          System.out.println("Is directory = " + attrs.isDirectory());
-          System.out.println("Is regular file = " + attrs.isRegularFile());
-
-          //            Path fileToDelete = FileSystems.getDefault().getPath("Examples", "Dir1", "file1copy.txt");
-          //            Files.deleteIfExists(fileToDelete);
         } catch(IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-    }
+        
+        Iterable<FileStore> stores = FileSystems.getDefault().getFileStores();
+        for(FileStore store : stores) {
+            System.out.println("Volume name/Drive letter = " + store);
+            System.out.println("file store = " + store.name());
+        }
+        
+        System.out.println("*******************");
+        Iterable<Path> rootPaths = FileSystems.getDefault().getRootDirectories();
+        for(Path path : rootPaths) {
+            System.out.println(path);
+        }
+        
+        System.out.println("---Walking Tree for Dir2---");
+        Path dir2Path = FileSystems.getDefault().getPath("FileTree" + File.separator + "Dir2");
+        try {
+            Files.walkFileTree(dir2Path, new PrintNames());
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+	}
 }
