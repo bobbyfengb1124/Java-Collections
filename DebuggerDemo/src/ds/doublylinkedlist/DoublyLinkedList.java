@@ -122,4 +122,24 @@ public class DoublyLinkedList {
 		
 		return current;
 	}
+	
+	public void displayForward() {
+		System.out.println("List (first --> last)");
+		Node current = first;
+		while(current != null) {
+			current.displayNode();
+			current = current.next;
+		}
+		System.out.println();
+	}
+	
+	public void displayBackward() {
+		System.out.println("List (last --> first)");
+		Node current = last;
+		while(current != null) {
+			current.displayNode();
+			current = current.previous;
+		}
+		System.out.println();
+	}
 }
