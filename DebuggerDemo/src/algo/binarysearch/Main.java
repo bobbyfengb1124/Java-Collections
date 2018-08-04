@@ -1,5 +1,6 @@
 package algo.binarysearch;
 
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -8,11 +9,9 @@ public class Main {
 	}
 	
 	public static int binarySearch(int[] a, int x) {
-		int ret = -1;
 		int startIndex = 0;
 		int endIndex = a.length-1;
 		int midPointIndex;
-		int i=0;
 
 		while (startIndex <= endIndex) {
 			
