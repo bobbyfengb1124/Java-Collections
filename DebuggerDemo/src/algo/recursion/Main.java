@@ -21,11 +21,12 @@ public class Main {
 
 	public static int recursiveLinearSearch(int[] a, int i, int x) {
 		int ret = -1;
-		System.out.println(i);
+		
 		if (i < a.length) {
 			if (a[i] == x) {
 				return i;
 			} else {
+				System.out.println("Index at: " + i );
 				i++;
 				ret = recursiveLinearSearch(a, i, x);
 				return ret;
@@ -35,10 +36,4 @@ public class Main {
 		}
 	}
 
-	// public static int recursiveLinearSearch1(int[] a, int i, int x) {
-	//
-	// if(i>n) {
-	// return -1
-	// }
-	// }
 }

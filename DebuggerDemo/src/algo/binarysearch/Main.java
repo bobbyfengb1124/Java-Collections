@@ -5,7 +5,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println(binarySearch(new int[] {1,2,3,4,7,9,12,18}, 12));
+		System.out.println(binarySearchRecusively(new int[] {1,2,3,4,7,9,12,18}, 0, 7, 18));
 	}
 	
 	public static int binarySearch(int[] a, int x) {
@@ -29,6 +29,28 @@ public class Main {
 		}
 
 		return -1;
+	}
+	
+	public static int binarySearchRecusively(int[] a, int startIndex, int endIndex, int x) {
+		int midPointIndex;
+		
+		if (startIndex > endIndex) {
+			return -1;
+		} else {
+			midPointIndex = (startIndex + endIndex) / 2;
+			System.out.println("Index at: " + midPointIndex);
+			if (a[midPointIndex] == x) {
+				return midPointIndex;
+			} else {
+				if (a[midPointIndex] > x) {
+					endIndex = midPointIndex - 1;
+					return binarySearchRecusively(a, startIndex, endIndex, x);
+				} else {
+					startIndex = midPointIndex + 1;
+					return binarySearchRecusively(a, startIndex, endIndex, x);
+				}
+			}
+		}
 	}
 
 }
