@@ -1,7 +1,5 @@
 package abstractclass.challenge;
 
-import java.util.ArrayList;
-
 public class Main {
 	public static void main(String[] args) {
 		// For this challenge, create an abstract class to define items that can be
