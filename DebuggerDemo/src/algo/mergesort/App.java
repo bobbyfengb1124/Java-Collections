@@ -11,5 +11,7 @@ public class App {
 		for(int i=0;i<inputArray.length;i++) {
 			System.out.println(inputArray[i]);
 		}
+		
+		System.out.println("Manual".substring(0,3));
 	}
 }
