@@ -12,6 +12,13 @@ public class ValidParenthesesSolution {
 		System.out.println(isValid(""));
 		System.out.println(isValid("([)]"));
 		System.out.println(isValid("{[]}"));
+		
+		char myChar = '\u00A9';
+		
+		System.out.println(myChar);
+		
+		myChar = '\u00AE';
+		System.out.println(myChar);
 	}
 
 	public static boolean isValid(String s) {
