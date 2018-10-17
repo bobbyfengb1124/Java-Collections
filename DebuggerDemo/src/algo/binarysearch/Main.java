@@ -4,8 +4,10 @@ package algo.binarysearch;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		Object in = 3;
 
-		System.out.println(binarySearchRecusively(new int[] {1,2,3,4,7,9,12,18}, 0, 7, 18));
+		//System.out.println(binarySearchRecusively(new int[] {1,2,3,4,7,9,12,18}, 0, 7, 18));
 	}
 	
 	public static int binarySearch(int[] a, int x) {
