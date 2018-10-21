@@ -3,8 +3,6 @@ package algo.binarysearchtree;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
-import sun.security.krb5.internal.crypto.crc32;
 
 public class BST {
 

@@ -25,8 +25,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.LocalAttribute;
-import com.sun.xml.internal.ws.db.glassfish.RawAccessorWrapper;
 
 /**
  * Created by timbuchalka on 2/04/2016.

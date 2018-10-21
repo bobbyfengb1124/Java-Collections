@@ -3,7 +3,6 @@ package interfacechallenge;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.sun.org.apache.xml.internal.security.keys.storage.StorageResolver;
 
 public class Main {
 
@@ -38,7 +37,7 @@ public class Main {
 
 		// Again, we are not going to use Java file I/O; instead use the readValues()
 		// method below to
-		// simulate getting values from a file – this allows you to type as many values
+		// simulate getting values from a file ï¿½ this allows you to type as many values
 		// as your class
 		// requires, and returns an ArrayList.
 		// There is a whole Java I/O section later in the course where you will get to
