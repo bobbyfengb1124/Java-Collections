@@ -8,6 +8,8 @@ public class ByteCalculation {
 		b6=b4+b5; 
 		b3=(b1+b2);
 		System.out.println(b3+b6);
+		
+		
 	}
 
 }
