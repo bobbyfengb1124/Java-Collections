@@ -7,9 +7,7 @@ public class ByteCalculation {
 		final byte b4=4,b5=6; 
 		b6=b4+b5; 
 		b3=(b1+b2);
-		System.out.println(b3+b6);
-		
-		
+		System.out.println(b3+b6);	
 	}
 
 }
