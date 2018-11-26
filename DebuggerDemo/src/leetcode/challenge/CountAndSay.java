@@ -12,7 +12,7 @@ public class CountAndSay {
 	public static void main(String[] args) {
 
 		
-//		 System.out.println(countAndSay(13));
+		 System.out.println(countAndSay(29));
 //		 System.out.println("====================");
 //		 System.out.println(countAndSay(2));
 //		 System.out.println("====================");
@@ -74,7 +74,7 @@ public class CountAndSay {
 //		 System.out.println(countAndSay(30));
 		 
 
-		 System.out.println(countSubString("3113112221232112111312211312113211"));
+//		 System.out.println(countSubString("3113112221232112111312211312113211"));
 //
 //		 System.out.println("====================");
 //		System.out.println(howManySubString("111221"));
