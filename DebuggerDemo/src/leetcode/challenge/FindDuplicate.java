@@ -10,6 +10,7 @@ public class FindDuplicate {
 		System.out.println(findDuplicate(a2));
 	}
 
+	
 	public static int findDuplicate(int[] nums) {
 		int slow = nums[0];
 		int fast = nums[0];
