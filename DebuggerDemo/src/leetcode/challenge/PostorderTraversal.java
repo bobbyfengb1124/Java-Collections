@@ -62,7 +62,6 @@ public class PostorderTraversal {
 		}
 
 		Collections.reverse(ret);
-
 		return ret;
 
 	}
