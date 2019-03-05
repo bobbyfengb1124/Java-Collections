@@ -59,7 +59,6 @@ public class PostorderTraversal {
 			if (cur.right != null) {
 				stack.push(cur.right);
 			}
-
 		}
 
 		Collections.reverse(ret);

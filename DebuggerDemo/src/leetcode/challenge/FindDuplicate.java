@@ -10,8 +10,6 @@ public class FindDuplicate {
 		System.out.println(findDuplicate(a2));
 	}
 
-	
-	
 	public static int findDuplicate(int[] nums) {
 		int slow = nums[0];
 		int fast = nums[0];
@@ -19,10 +17,10 @@ public class FindDuplicate {
 		do {
 			slow = nums[slow];
 			fast = nums[nums[fast]];
-		}while (slow != fast);
-		
+		} while (slow != fast);
+
 		fast = nums[0];
-		while(fast !=slow) {
+		while (fast != slow) {
 			fast = nums[fast];
 			slow = nums[slow];
 		}

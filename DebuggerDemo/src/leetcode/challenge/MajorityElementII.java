@@ -100,8 +100,6 @@ public class MajorityElementII {
             }
         }
 
-
-
         if (countA>nums.length/3){
             resultList.add(candidateA);
         }
