@@ -1,9 +1,5 @@
 package leetcode.challenge;
 
-import java.util.List;
-
-import javafx.animation.ParallelTransition;
-
 public class SortList {
 	public class ListNode {
 		int val;
