@@ -2,14 +2,11 @@ package leetcode.challenge;
 
 import java.util.Arrays;
 
-
 public class Candy {
 
 	public static void main(String[] args) {
 		System.out.println(candy(new int[] { 1, 0, 2 }));
-
 		System.out.println(candy(new int[] { 1, 2, 2 }));
-
 		System.out.println(candy(new int[] { 1, 3, 2, 2, 1 }));
 		System.out.println(candy(new int[] { 1, 2, 87, 87, 87, 2, 1 }));
 	}
